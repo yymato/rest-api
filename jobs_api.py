@@ -69,7 +69,7 @@ def edit_job():
         return make_response(jsonify({'error': 'Empty request'}), 400)
 
     db_session = create_session()
-    if request.json['id'] and db_session.query(Jobs).get(request.json['id']):
+    if 'id' in request.json.keys() and request.json['id'] and db_session.query(Jobs).get(request.json['id']):
         job = db_session.query(Jobs).get(request.json['id'])
         for key in request.json.keys():
             setattr(job, key, request.json[key])
