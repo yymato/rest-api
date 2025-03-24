@@ -1,9 +1,17 @@
-from flask import Flask, make_response, jsonify
+import base64
+from io import BytesIO
+
+import requests
+from flask import Flask, make_response, jsonify, render_template
 from flask_login import LoginManager
 
-import users_api
 from data import db_session
+from data.db_session import create_session
 from data.users import User
+
+from users_api import main_server_api
+from yandex_api.static_maps_api import get_picture
+
 
 app = Flask(__name__)
 login_manager = LoginManager()
@@ -12,16 +20,18 @@ app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
 
 
 def main():
-    db_session.global_init('123.sqlite')
-    app.register_blueprint(users_api.blueprint)
-    # db_sess = create_session()
-    # user = User()
-    # user.email = 'admin@admin.com'
-    # user.name = 'admin'
-    # user.set_password('123')
-    # db_sess.add(user)
-    # db_sess.commit()
-    app.run()
+    app.run(app.run(host='127.0.0.1', port=8080))
+
+@app.route('/users_show/<int:user_id>')
+def users_show(user_id):
+    response = requests.get(f'http://localhost:29/api/users/{user_id}').json()
+    print(response)
+    print(get_picture(response['city']))
+    if 'error' not in response.keys():
+        return render_template('show_users.html', name=response['name'], city=response['city'], image=
+                               base64.b64encode(BytesIO(get_picture(response['city']).content).getvalue()).decode('utf-8'))
+    else:
+        return '<h1>Error</h1>'
 
 
 @login_manager.user_loader

@@ -17,7 +17,7 @@ def get_one_user(users_id):
     db_session = create_session()
     user = db_session.query(User).get(users_id)
     if user:
-        return jsonify({'User': user.to_dict()})
+        return jsonify(user.to_dict())
     else:
         return make_response(jsonify({'error': 'user not found'}, 404))
 
