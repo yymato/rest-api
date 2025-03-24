@@ -1,7 +1,7 @@
 from flask import Flask, make_response, jsonify
 from flask_login import LoginManager
 
-import jobs_api
+import users_api
 from data import db_session
 from data.users import User
 
