@@ -63,6 +63,22 @@ def delete_job(job_id):
     else:
         return make_response(jsonify({'error': 'Job not found'}, 404))
 
+@blueprint.route('/api/jobs/', methods=['PUT'])
+def edit_job():
+    if not request.json:
+        return make_response(jsonify({'error': 'Empty request'}), 400)
+
+    db_session = create_session()
+    if request.json['id'] and db_session.query(Jobs).get(request.json['id']):
+        job = db_session.query(Jobs).get(request.json['id'])
+        for key in request.json.keys():
+            setattr(job, key, request.json[key])
+
+        db_session.commit()
+        return jsonify({'success': True})
+    else:
+        return make_response(jsonify({'error': 'id not in request'}), 400)
+
 @blueprint.errorhandler(404)
 def not_found(error):
     return make_response(jsonify({'error': 'Not found'}), 404)

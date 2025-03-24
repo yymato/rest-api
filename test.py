@@ -1,4 +1,4 @@
-from requests import get, post, delete
+from requests import get, post, delete, put
 
 # print(get('http://localhost:5000/api/jobs').json(), 3 * '\n')  # Получение всех работ
 # print(get('http://localhost:5000/api/jobs/2').json(), 3 * '\n')  # Корректное получение одной работы
@@ -19,10 +19,11 @@ from requests import get, post, delete
 #                                                 }).json(), 3 * '\n')  # правильный запрос
 # print(get('http://localhost:5000/api/jobs').json(), 3 * '\n')  # Получение всех работ
 
-print(delete('http://localhost:5000/api/jobs/q').json(), 3 * '\n')  # Не корректный id
-print(delete('http://localhost:5000/api/jobs/999999999').json(), 3 * '\n')  # Не корректный id
-print(delete('http://localhost:5000/api/jobs/3').json(), 3 * '\n')  # правильный запрос
+# print(delete('http://localhost:5000/api/jobs/q').json(), 3 * '\n')  # Не корректный id
+# print(delete('http://localhost:5000/api/jobs/999999999').json(), 3 * '\n')  # Не корректный id
+# print(delete('http://localhost:5000/api/jobs/3').json(), 3 * '\n')  # правильный запрос
+# print(get('http://localhost:5000/api/jobs').json(), 3 * '\n')  # Получение всех работ
+
+print(put('http://localhost:5000/api/jobs', json={'id': 3, 'job': 'test2123123123213'}).json(), 3 * '\n')
+
 print(get('http://localhost:5000/api/jobs').json(), 3 * '\n')  # Получение всех работ
-
-
-
