@@ -59,7 +59,7 @@ def delete_job(job_id):
     if job:
         db_session.delete(job)
         db_session.commit()
-        return jsonify({'id': job.id})
+        return jsonify({'success': True})
     else:
         return make_response(jsonify({'error': 'Job not found'}, 404))
 
