@@ -24,8 +24,8 @@ from requests import get, post, delete, put
 # print(delete('http://localhost:5000/api/jobs/3').json(), 3 * '\n')  # правильный запрос
 # print(get('http://localhost:5000/api/jobs').json(), 3 * '\n')  # Получение всех работ
 
-print(put('http://localhost:5000/api/jobs', json={'job': 'test2123123123213'}).json(), 3 * '\n')  # нет id в запросе
-print(put('http://localhost:5000/api/jobs', json={}).json(), 3 * '\n')  # пустой запрос
-print(put('http://localhost:5000/api/jobs', json={'id': 3, 'job': 'test2123123123213'}).json(), 3 * '\n')  # правильный запрос
-
-print(get('http://localhost:5000/api/jobs').json(), 3 * '\n')  # Получение всех работ
+# print(put('http://localhost:5000/api/jobs', json={'job': 'test2123123123213'}).json(), 3 * '\n')  # нет id в запросе
+# print(put('http://localhost:5000/api/jobs', json={}).json(), 3 * '\n')  # пустой запрос
+# print(put('http://localhost:5000/api/jobs', json={'id': 3, 'job': 'test2123123123213'}).json(), 3 * '\n')  # правильный запрос
+#
+# print(get('http://localhost:5000/api/jobs').json(), 3 * '\n')  # Получение всех работ
