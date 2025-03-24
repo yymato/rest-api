@@ -33,5 +33,9 @@ def load_user(user_id):
 def not_found(error):
     return make_response(jsonify({'error': 'Not found'}), 404)
 
+@app.errorhandler(400)
+def bad_request(_):
+    return make_response(jsonify({'error': 'Bad Request'}), 400)
+
 if __name__ == '__main__':
     main()
