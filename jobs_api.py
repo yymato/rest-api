@@ -47,10 +47,21 @@ def add_job():
 
         db_session.add(job)
         db_session.commit()
-        return make_response(jsonify({'success': True}))
+        return jsonify({'id': job.id})
     else:
         return make_response(jsonify({'error': 'Bad request'}), 404)
 
+
+@blueprint.route('/api/jobs/<int:job_id>', methods=['DELETE'])
+def delete_job(job_id):
+    db_session = create_session()
+    job = db_session.query(Jobs).get(job_id)
+    if job:
+        db_session.delete(job)
+        db_session.commit()
+        return jsonify({'id': job.id})
+    else:
+        return make_response(jsonify({'error': 'Job not found'}, 404))
 
 @blueprint.errorhandler(404)
 def not_found(error):
