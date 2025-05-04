@@ -8,8 +8,6 @@ from flask_login import LoginManager
 from data import db_session
 from data.db_session import create_session
 from data.users import User
-
-from users_api import main_server_api
 from yandex_api.static_maps_api import get_picture
 
 
@@ -20,7 +18,7 @@ app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
 
 
 def main():
-    app.run(app.run(host='127.0.0.1', port=8080))
+    app.run()
 
 @app.route('/users_show/<int:user_id>')
 def users_show(user_id):

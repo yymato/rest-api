@@ -1,7 +1,7 @@
 from flask import Flask, make_response, jsonify
 from flask_login import LoginManager
 
-from users_api.user_api import blueprint
+from user_api import blueprint
 from data import db_session
 from data.users import User
 
@@ -12,7 +12,7 @@ app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
 
 
 def main():
-    db_session.global_init('../123.sqlite')
+    db_session.global_init('123.sqlite')
     app.register_blueprint(blueprint)
     # db_sess = create_session()
     # user = User()

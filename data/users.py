@@ -22,7 +22,7 @@ class Jobs(SqlAlchemyBase):
     user = sqlalchemy.orm.relationship('User')
 
 
-class User(SqlAlchemyBase, UserMixin):
+class User(SqlAlchemyBase, UserMixin, SerializerMixin):
     __tablename__ = 'users'
 
     id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True, autoincrement=True)
@@ -33,6 +33,7 @@ class User(SqlAlchemyBase, UserMixin):
     speciality = sqlalchemy.Column(sqlalchemy.String)
     address = sqlalchemy.Column(sqlalchemy.String)
     email = sqlalchemy.Column(sqlalchemy.String, unique=True)
+    city = sqlalchemy.Column(sqlalchemy.String)
     hashed_password = sqlalchemy.Column(sqlalchemy.String)
     modified_date = sqlalchemy.Column(sqlalchemy.DateTime, default=datetime.datetime.now)
 
